@@ -53,3 +53,22 @@ export const formatRegion = (region: string): string => {
   
   return formattedRegion;
 };
+
+export const formatBillingCycle = (days: number, t: (key: string) => string): string => {
+  // 处理天数，转换为合适的计费周期显示
+  if (days >= 28 && days <= 31) {
+    return t('monthly');
+  } else if (days >= 88 && days <= 95) {
+    return t('quarterly');
+  } else if (days >= 178 && days <= 185) {
+    return t('semi_annually');
+  } else if (days >= 360 && days <= 370) {
+    return t('annually');
+  } else if (days === 7) {
+    return t('weekly');
+  } else if (days === 1) {
+    return t('daily');
+  } else {
+    return `${days} ${t('days')}`;
+  }
+};

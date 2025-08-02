@@ -1,4 +1,4 @@
-# Komari Material Theme
+# Komari Theme Material
 
 一个基于 Material Design 的 Komari 监控系统主题，使用 React 和 Material-UI 构建。
 

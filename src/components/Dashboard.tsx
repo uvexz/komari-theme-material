@@ -49,6 +49,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewDetails }) => {
   const [nodeStatuses, setNodeStatuses] = useState<Record<string, NodeStatus>>({});
   const [onlineNodes, setOnlineNodes] = useState<string[]>([]);
   const [selectedGroup, setSelectedGroup] = useLocalStorage<string>('nodeSelectedGroup', '');
+  const [selectedStatus, setSelectedStatus] = useLocalStorage<string>('nodeSelectedStatus', 'all');
   const [viewMode, setViewMode] = useLocalStorage<ViewMode>('nodeViewMode', 'grid');
   const [loading, setLoading] = useState(true);
 
@@ -106,17 +107,43 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewDetails }) => {
   }, []);
 
   // 获取所有分组
-  const groups = Array.from(new Set(nodes.map(node => node.group).filter(Boolean)));
+  const groups = Array.from(new Set(nodes.map(node => node.group).filter(group => group && group.trim())));
+
+  // 计算每个分组的节点数量
+  const groupCounts = groups.reduce((acc, group) => {
+    acc[group] = nodes.filter(node => node.group === group).length;
+    return acc;
+  }, {} as Record<string, number>);
+
+  // 如果当前选择的分组不存在，重置为空
+  useEffect(() => {
+    if (selectedGroup && !groups.includes(selectedGroup)) {
+      setSelectedGroup('');
+    }
+  }, [groups, selectedGroup, setSelectedGroup]);
 
   // 过滤和排序节点
-  const filteredNodes = (selectedGroup
-    ? nodes.filter(node => node.group === selectedGroup)
-    : nodes
-  ).sort((a, b) => a.weight - b.weight); // 按 weight 从小到大排序
+  const filteredNodes = nodes
+    .filter(node => {
+      // 按分组过滤
+      if (selectedGroup && node.group !== selectedGroup) {
+        return false;
+      }
+      // 按状态过滤
+      const isOnline = onlineNodes.includes(node.uuid);
+      if (selectedStatus === 'online' && !isOnline) {
+        return false;
+      }
+      if (selectedStatus === 'offline' && isOnline) {
+        return false;
+      }
+      return true;
+    })
+    .sort((a, b) => a.weight - b.weight); // 按 weight 从小到大排序
 
-  // 计算统计数据
-  const totalNodes = filteredNodes.length;
-  const onlineCount = filteredNodes.filter(node => onlineNodes.includes(node.uuid)).length;
+  // 计算统计数据（基于所有节点，不受筛选影响）
+  const totalNodes = nodes.length;
+  const onlineCount = nodes.filter(node => onlineNodes.includes(node.uuid)).length;
   const offlineCount = totalNodes - onlineCount;
   const totalGroups = groups.length;
 
@@ -215,19 +242,33 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewDetails }) => {
       {/* 控制栏 */}
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
         <Box /> {/* 占位符 */}
-        
+
         <Box display="flex" gap={2} alignItems="center">
+          <FormControl size="small" sx={{ minWidth: 120 }}>
+            <InputLabel>{t('status')}</InputLabel>
+            <Select
+              value={selectedStatus}
+              label={t('status')}
+              onChange={(e) => setSelectedStatus(e.target.value)}
+            >
+              <MenuItem value="all">{t('all_nodes')}</MenuItem>
+              <MenuItem value="online">{t('online_nodes')}</MenuItem>
+              <MenuItem value="offline">{t('offline_nodes')}</MenuItem>
+            </Select>
+          </FormControl>
+
           <FormControl size="small" sx={{ minWidth: 150 }}>
-            <InputLabel>{t('all_groups')}</InputLabel>
+            <InputLabel shrink>{t('groups')}</InputLabel>
             <Select
               value={selectedGroup}
-              label={t('all_groups')}
+              label={t('groups')}
+              displayEmpty
               onChange={(e) => setSelectedGroup(e.target.value)}
             >
               <MenuItem value="">{t('all_groups')}</MenuItem>
               {groups.map(group => (
                 <MenuItem key={group} value={group}>
-                  {group}
+                  {group} ({groupCounts[group]})
                 </MenuItem>
               ))}
             </Select>
