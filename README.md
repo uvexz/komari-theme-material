@@ -43,6 +43,10 @@ npm run dev
 
 # 构建
 npm run build
+
+# 打包
+
+npm run package
 ```
 
 ## 打包主题
@@ -61,4 +65,4 @@ npm run build
 
 ## 许可证
 
-MIT
+WTFPL

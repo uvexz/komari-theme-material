@@ -62,5 +62,10 @@
     "days": "{{count}}日",
     "hours": "{{count}}時間",
     "minutes": "{{count}}分"
+  },
+  "table": {
+    "nodeName": "ノード名",
+    "status": "ステータス",
+    "region": "地域"
   }
 }

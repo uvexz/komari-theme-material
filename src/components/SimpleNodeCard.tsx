@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography, Box, Chip, Stack, Avatar } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import type { NodeInfo, NodeStatus } from '../types';
 import { formatBytes, formatPercentage, emojiToCountryCode } from '../utils/format';
 import GroupIcon from '@mui/icons-material/Group';
@@ -14,6 +15,7 @@ interface SimpleNodeCardProps {
 }
 
 export function SimpleNodeCard({ node, status, online, onClick, onGroupFilter, onTagFilter }: SimpleNodeCardProps) {
+  const { t } = useTranslation();
   const cpuUsage = status?.cpu.usage || 0;
   const ramUsage = status ? (status.ram.used / status.ram.total) * 100 : 0;
   const countryCode = emojiToCountryCode(node.region || '');
@@ -64,7 +66,7 @@ export function SimpleNodeCard({ node, status, online, onClick, onGroupFilter, o
             </Typography>
           </Box>
           <Chip
-            label={online ? '在线' : '离线'}
+            label={online ? t('node.online') : t('node.offline')}
             color={online ? 'success' : 'default'}
             size="small"
           />
@@ -111,10 +113,10 @@ export function SimpleNodeCard({ node, status, online, onClick, onGroupFilter, o
         {status && (
           <Stack direction="row" spacing={2} mt={1}>
             <Typography variant="body2" color="text.secondary">
-              CPU: {formatPercentage(cpuUsage)}
+              {t('node.cpu')}: {formatPercentage(cpuUsage)}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              内存: {formatPercentage(ramUsage)}
+              {t('node.memory')}: {formatPercentage(ramUsage)}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               ↑{formatBytes(status.network.up)}/s

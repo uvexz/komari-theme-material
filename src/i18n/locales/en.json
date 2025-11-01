@@ -65,5 +65,10 @@
     "hours_plural": "{{count}} hours",
     "minutes": "{{count}} minute",
     "minutes_plural": "{{count}} minutes"
+  },
+  "table": {
+    "nodeName": "Node Name",
+    "status": "Status",
+    "region": "Region"
   }
 }

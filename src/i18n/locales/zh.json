@@ -62,5 +62,10 @@
     "days": "{{count}}天",
     "hours": "{{count}}小时",
     "minutes": "{{count}}分钟"
+  },
+  "table": {
+    "nodeName": "节点名称",
+    "status": "状态",
+    "region": "地区"
   }
 }

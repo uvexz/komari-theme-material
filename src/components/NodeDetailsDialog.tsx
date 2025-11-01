@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Dialog,
   DialogTitle,
@@ -65,6 +66,7 @@ function TabPanel(props: TabPanelProps) {
 type TimeRange = '1h' | '24h' | '3d';
 
 export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeDetailsDialogProps) {
+  const { t } = useTranslation();
   const [tabValue, setTabValue] = useState(0);
   const [recentData, setRecentData] = useState<any[]>([]);
   const [loadingRecent, setLoadingRecent] = useState(false);
@@ -170,8 +172,8 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
               <Typography variant="h6">{node.name}</Typography>
               <Box display="flex" alignItems="center" gap={1}>
                 {flagUrl && (
-                  <Avatar 
-                    src={flagUrl} 
+                  <Avatar
+                    src={flagUrl}
                     alt={node.region}
                     sx={{ width: 16, height: 16 }}
                   />
@@ -184,7 +186,7 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
           </Box>
           <Box display="flex" alignItems="center" gap={1}>
             <Chip
-              label={online ? '在线' : '离线'}
+              label={online ? t('node.online') : t('node.offline')}
               color={online ? 'success' : 'default'}
               size="small"
             />
@@ -201,12 +203,12 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
         <Tabs value={tabValue} onChange={(_, newValue) => setTabValue(newValue)}>
           <Tab
             icon={<InfoIcon />}
-            label="概览"
+            label={t('dialog.overview')}
             iconPosition="start"
           />
           <Tab
             icon={<TimelineIcon />}
-            label="历史数据"
+            label={t('dialog.history')}
             iconPosition="start"
           />
         </Tabs>
@@ -217,54 +219,54 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
             <Card variant="outlined">
               <CardContent>
                 <Typography variant="subtitle1" gutterBottom fontWeight="bold">
-                  系统信息
+                  {t('dialog.systemInfo')}
                 </Typography>
                 <Grid container spacing={2}>
                   <Grid size={{ xs: 6 }}>
                     <Typography variant="body2" color="text.secondary">
-                      CPU
+                      {t('node.cpu')}
                     </Typography>
                     <Typography variant="body1">{node.cpu_name}</Typography>
                   </Grid>
                   <Grid size={{ xs: 6 }}>
                     <Typography variant="body2" color="text.secondary">
-                      核心数
+                      {t('dialog.cores')}
                     </Typography>
                     <Typography variant="body1">{node.cpu_cores}</Typography>
                   </Grid>
                   <Grid size={{ xs: 6 }}>
                     <Typography variant="body2" color="text.secondary">
-                      内存
+                      {t('node.memory')}
                     </Typography>
                     <Typography variant="body1">{formatBytes(node.mem_total)}</Typography>
                   </Grid>
                   <Grid size={{ xs: 6 }}>
                     <Typography variant="body2" color="text.secondary">
-                      磁盘
+                      {t('node.disk')}
                     </Typography>
                     <Typography variant="body1">{formatBytes(node.disk_total)}</Typography>
                   </Grid>
                   <Grid size={{ xs: 6 }}>
                     <Typography variant="body2" color="text.secondary">
-                      GPU
+                      {t('dialog.gpu')}
                     </Typography>
                     <Typography variant="body1">{node.gpu_name || 'None'}</Typography>
                   </Grid>
                   <Grid size={{ xs: 6 }}>
                     <Typography variant="body2" color="text.secondary">
-                      架构
+                      {t('dialog.arch')}
                     </Typography>
                     <Typography variant="body1">{node.arch}</Typography>
                   </Grid>
                   <Grid size={{ xs: 6 }}>
                     <Typography variant="body2" color="text.secondary">
-                      虚拟化
+                      {t('dialog.virtualization')}
                     </Typography>
                     <Typography variant="body1">{node.virtualization}</Typography>
                   </Grid>
                   <Grid size={{ xs: 6 }}>
                     <Typography variant="body2" color="text.secondary">
-                      内核版本
+                      {t('dialog.kernelVersion')}
                     </Typography>
                     <Typography variant="body1">{node.kernel_version}</Typography>
                   </Grid>
@@ -277,7 +279,7 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
               <Card variant="outlined">
                 <CardContent>
                   <Typography variant="subtitle1" gutterBottom fontWeight="bold">
-                    当前状态
+                    {t('dialog.currentStatus')}
                   </Typography>
                   <Stack spacing={2}>
                     {/* CPU */}
@@ -285,7 +287,7 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
                       <Box display="flex" justifyContent="space-between" mb={1}>
                         <Box display="flex" alignItems="center" gap={1}>
                           <ComputerIcon fontSize="small" color="primary" />
-                          <Typography variant="body2">CPU</Typography>
+                          <Typography variant="body2">{t('node.cpu')}</Typography>
                         </Box>
                         <Typography variant="body2" fontWeight="medium">
                           {formatPercentage(cpuUsage)}
@@ -304,7 +306,7 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
                       <Box display="flex" justifyContent="space-between" mb={1}>
                         <Box display="flex" alignItems="center" gap={1}>
                           <MemoryIcon fontSize="small" color="primary" />
-                          <Typography variant="body2">内存</Typography>
+                          <Typography variant="body2">{t('node.memory')}</Typography>
                         </Box>
                         <Typography variant="body2" fontWeight="medium">
                           {formatBytes(status.ram.used)} / {formatBytes(status.ram.total)} ({formatPercentage(ramUsage)})
@@ -323,7 +325,7 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
                       <Box display="flex" justifyContent="space-between" mb={1}>
                         <Box display="flex" alignItems="center" gap={1}>
                           <StorageIcon fontSize="small" color="primary" />
-                          <Typography variant="body2">磁盘</Typography>
+                          <Typography variant="body2">{t('node.disk')}</Typography>
                         </Box>
                         <Typography variant="body2" fontWeight="medium">
                           {formatBytes(status.disk.used)} / {formatBytes(status.disk.total)} ({formatPercentage(diskUsage)})
@@ -341,7 +343,7 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
                     {status.swap.total > 0 && (
                       <Box>
                         <Box display="flex" justifyContent="space-between" mb={1}>
-                          <Typography variant="body2">Swap</Typography>
+                          <Typography variant="body2">{t('dialog.swap')}</Typography>
                           <Typography variant="body2" fontWeight="medium">
                             {formatBytes(status.swap.used)} / {formatBytes(status.swap.total)} ({formatPercentage(swapUsage)})
                           </Typography>
@@ -361,29 +363,29 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
                     <Box>
                       <Box display="flex" alignItems="center" gap={1} mb={2}>
                         <NetworkCheckIcon fontSize="small" color="primary" />
-                        <Typography variant="body2" fontWeight="bold">网络</Typography>
+                        <Typography variant="body2" fontWeight="bold">{t('node.network')}</Typography>
                       </Box>
                       <Grid container spacing={2}>
                         <Grid size={{ xs: 6 }}>
                           <Typography variant="body2" color="text.secondary">
-                            ↑ 上传
+                            ↑ {t('node.upload')}
                           </Typography>
                           <Typography variant="body1" fontWeight="medium">
                             {formatBytes(status.network.up)}/s
                           </Typography>
                           <Typography variant="caption" color="text.secondary">
-                            总计: {formatBytes(status.network.totalUp)}
+                            {t('node.total')}: {formatBytes(status.network.totalUp)}
                           </Typography>
                         </Grid>
                         <Grid size={{ xs: 6 }}>
                           <Typography variant="body2" color="text.secondary">
-                            ↓ 下载
+                            ↓ {t('node.download')}
                           </Typography>
                           <Typography variant="body1" fontWeight="medium">
                             {formatBytes(status.network.down)}/s
                           </Typography>
                           <Typography variant="caption" color="text.secondary">
-                            总计: {formatBytes(status.network.totalDown)}
+                            {t('node.total')}: {formatBytes(status.network.totalDown)}
                           </Typography>
                         </Grid>
                       </Grid>
@@ -399,7 +401,7 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
           <Box mb={3}>
             <Box display="flex" justifyContent="center" alignItems="center" gap={2}>
               <Typography variant="body2" color="text.secondary">
-                时间范围:
+                {t('dialog.timeRange')}
               </Typography>
               <ToggleButtonGroup
                 value={timeRange}
@@ -408,13 +410,13 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
                 size="small"
               >
                 <ToggleButton value="1h">
-                  1小时
+                  {t('dialog.1h')}
                 </ToggleButton>
                 <ToggleButton value="24h">
-                  24小时
+                  {t('dialog.24h')}
                 </ToggleButton>
                 <ToggleButton value="3d">
-                  3天
+                  {t('dialog.3d')}
                 </ToggleButton>
               </ToggleButtonGroup>
             </Box>
@@ -423,14 +425,14 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
           {loadingRecent ? (
             <Box textAlign="center" py={4}>
               <CircularProgress />
-              <Typography mt={2}>加载中...</Typography>
+              <Typography mt={2}>{t('message.loading')}</Typography>
             </Box>
           ) : recentData.length > 0 ? (
             <Stack spacing={4}>
               <LazyChart
                 data={recentData}
                 type="area"
-                title="CPU 使用率"
+                title={t('dialog.cpuUsage')}
                 dataKey="cpu"
                 color="#1976d2"
                 unit="%"
@@ -439,7 +441,7 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
               <LazyChart
                 data={recentData}
                 type="area"
-                title="内存使用率"
+                title={t('dialog.memoryUsage')}
                 dataKey="ram"
                 color="#2e7d32"
                 unit="%"
@@ -448,7 +450,7 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
               <LazyChart
                 data={recentData}
                 type="area"
-                title="磁盘使用率"
+                title={t('dialog.diskUsage')}
                 dataKey="disk"
                 color="#ed6c02"
                 unit="%"
@@ -457,7 +459,7 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
               <LazyChart
                 data={recentData}
                 type="line"
-                title="系统负载"
+                title={t('dialog.systemLoad')}
                 dataKey="load"
                 color="#9c27b0"
                 unit=""
@@ -466,7 +468,7 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
               <LazyChart
                 data={recentData}
                 type="bar"
-                title="网络下载速度"
+                title={t('dialog.networkDownload')}
                 dataKey="network_in"
                 color="#0288d1"
                 unit=" KB/s"
@@ -475,7 +477,7 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
               <LazyChart
                 data={recentData}
                 type="bar"
-                title="网络上传速度"
+                title={t('dialog.networkUpload')}
                 dataKey="network_out"
                 color="#f57c00"
                 unit=" KB/s"
@@ -484,14 +486,14 @@ export function NodeDetailsDialog({ open, node, status, online, onClose }: NodeD
             </Stack>
           ) : (
             <Box textAlign="center" py={4}>
-              <Typography color="text.secondary">暂无历史数据</Typography>
+              <Typography color="text.secondary">{t('dialog.noHistoryData')}</Typography>
             </Box>
           )}
         </TabPanel>
       </DialogContent>
 
       <DialogActions>
-        <Button onClick={onClose}>关闭</Button>
+        <Button onClick={onClose}>{t('dialog.close')}</Button>
       </DialogActions>
     </Dialog>
   );

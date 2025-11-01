@@ -11,6 +11,7 @@ import {
   Box,
   Avatar
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import type { NodeInfo, NodeStatus } from '../types';
 import { formatBytes, formatPercentage, getColorByUsage, emojiToCountryCode } from '../utils/format';
 
@@ -22,19 +23,21 @@ interface NodeTableProps {
 }
 
 export function NodeTable({ nodes, statusMap, onlineNodes, onNodeClick }: NodeTableProps) {
+  const { t } = useTranslation();
+  
   return (
     <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>节点名称</TableCell>
-            <TableCell>状态</TableCell>
-            <TableCell>地区</TableCell>
-            <TableCell>CPU</TableCell>
-            <TableCell>内存</TableCell>
-            <TableCell>磁盘</TableCell>
-            <TableCell>网络</TableCell>
-            <TableCell>负载</TableCell>
+            <TableCell>{t('table.nodeName')}</TableCell>
+            <TableCell>{t('table.status')}</TableCell>
+            <TableCell>{t('table.region')}</TableCell>
+            <TableCell>{t('node.cpu')}</TableCell>
+            <TableCell>{t('node.memory')}</TableCell>
+            <TableCell>{t('node.disk')}</TableCell>
+            <TableCell>{t('node.network')}</TableCell>
+            <TableCell>{t('dialog.load')}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -60,7 +63,7 @@ export function NodeTable({ nodes, statusMap, onlineNodes, onNodeClick }: NodeTa
                 <TableCell>{node.name}</TableCell>
                 <TableCell>
                   <Chip
-                    label={online ? '在线' : '离线'}
+                    label={online ? t('node.online') : t('node.offline')}
                     color={online ? 'success' : 'default'}
                     size="small"
                   />
