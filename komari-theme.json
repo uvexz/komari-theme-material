@@ -1,0 +1,21 @@
+{
+  "name": "Komari Theme Material",
+  "short": "Material",
+  "description": "A Material Design for Komari Monitor",
+  "version": "1.1.0",
+  "author": "Uvexz with AI",
+  "url": "https://github.com/uvexz/komari-theme-material",
+  "preview": "preview.png",
+  "configuration": {
+    "type": "managed",
+    "name": "Material 主题设置",
+    "data": [
+      { "name": "显示设置", "type": "title" },
+      { "key": "defaultViewMode", "name": "默认显示模式", "type": "select", "options": "详细网格,简约网格,表格", "default": "详细网格", "help": "选择默认的节点显示模式" },
+      { "key": "cardsPerRow", "name": "每行卡片数", "type": "number", "default": 3, "help": "网格模式下每行显示的卡片数量" },
+      { "name": "主题颜色", "type": "title" },
+      { "key": "primaryColor", "name": "主色调", "type": "select", "options": "蓝色,紫色,绿色,橙色,红色", "default": "蓝色", "help": "选择主题的主色调" },
+      { "key": "enableAnimations", "name": "启用动画效果", "type": "switch", "default": true, "help": "是否启用卡片和过渡动画" }
+    ]
+  }
+}

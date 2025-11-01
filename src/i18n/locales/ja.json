@@ -1,0 +1,66 @@
+{
+  "header": {
+    "admin": "管理者",
+    "detailedGrid": "詳細グリッド",
+    "simpleGrid": "シンプルグリッド",
+    "table": "テーブル"
+  },
+  "node": {
+    "online": "オンライン",
+    "offline": "オフライン",
+    "cpu": "CPU",
+    "memory": "メモリ",
+    "disk": "ディスク",
+    "network": "ネットワーク",
+    "uptime": "稼働時間",
+    "upload": "アップロード",
+    "download": "ダウンロード",
+    "total": "合計",
+    "group": "グループ",
+    "tag": "タグ"
+  },
+  "filter": {
+    "currentFilter": "現在のフィルター:",
+    "group": "グループ: {{group}}",
+    "tag": "タグ: {{tag}}"
+  },
+  "message": {
+    "noNodes": "ノードデータがありません",
+    "noMatchingNodes": "一致するノードがありません",
+    "loading": "読み込み中..."
+  },
+  "footer": {
+    "poweredBy": "Powered by",
+    "theme": "Theme"
+  },
+  "dialog": {
+    "overview": "概要",
+    "history": "履歴データ",
+    "systemInfo": "システム情報",
+    "currentStatus": "現在の状態",
+    "cores": "コア数",
+    "gpu": "GPU",
+    "arch": "アーキテクチャ",
+    "virtualization": "仮想化",
+    "kernelVersion": "カーネルバージョン",
+    "swap": "スワップ",
+    "load": "負荷",
+    "timeRange": "時間範囲:",
+    "1h": "1時間",
+    "24h": "24時間",
+    "3d": "3日",
+    "cpuUsage": "CPU使用率",
+    "memoryUsage": "メモリ使用率",
+    "diskUsage": "ディスク使用率",
+    "systemLoad": "システム負荷",
+    "networkDownload": "ネットワークダウンロード速度",
+    "networkUpload": "ネットワークアップロード速度",
+    "noHistoryData": "履歴データがありません",
+    "close": "閉じる"
+  },
+  "time": {
+    "days": "{{count}}日",
+    "hours": "{{count}}時間",
+    "minutes": "{{count}}分"
+  }
+}

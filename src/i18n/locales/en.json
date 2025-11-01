@@ -1,0 +1,69 @@
+{
+  "header": {
+    "admin": "Admin",
+    "detailedGrid": "Detailed Grid",
+    "simpleGrid": "Simple Grid",
+    "table": "Table"
+  },
+  "node": {
+    "online": "Online",
+    "offline": "Offline",
+    "cpu": "CPU",
+    "memory": "Memory",
+    "disk": "Disk",
+    "network": "Network",
+    "uptime": "Uptime",
+    "upload": "Upload",
+    "download": "Download",
+    "total": "Total",
+    "group": "Group",
+    "tag": "Tag"
+  },
+  "filter": {
+    "currentFilter": "Current Filter:",
+    "group": "Group: {{group}}",
+    "tag": "Tag: {{tag}}"
+  },
+  "message": {
+    "noNodes": "No nodes available",
+    "noMatchingNodes": "No matching nodes",
+    "loading": "Loading..."
+  },
+  "footer": {
+    "poweredBy": "Powered by",
+    "theme": "Theme"
+  },
+  "dialog": {
+    "overview": "Overview",
+    "history": "History",
+    "systemInfo": "System Information",
+    "currentStatus": "Current Status",
+    "cores": "Cores",
+    "gpu": "GPU",
+    "arch": "Architecture",
+    "virtualization": "Virtualization",
+    "kernelVersion": "Kernel Version",
+    "swap": "Swap",
+    "load": "Load",
+    "timeRange": "Time Range:",
+    "1h": "1 Hour",
+    "24h": "24 Hours",
+    "3d": "3 Days",
+    "cpuUsage": "CPU Usage",
+    "memoryUsage": "Memory Usage",
+    "diskUsage": "Disk Usage",
+    "systemLoad": "System Load",
+    "networkDownload": "Network Download Speed",
+    "networkUpload": "Network Upload Speed",
+    "noHistoryData": "No history data available",
+    "close": "Close"
+  },
+  "time": {
+    "days": "{{count}} day",
+    "days_plural": "{{count}} days",
+    "hours": "{{count}} hour",
+    "hours_plural": "{{count}} hours",
+    "minutes": "{{count}} minute",
+    "minutes_plural": "{{count}} minutes"
+  }
+}

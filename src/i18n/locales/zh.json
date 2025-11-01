@@ -1,0 +1,66 @@
+{
+  "header": {
+    "admin": "管理员",
+    "detailedGrid": "详细网格",
+    "simpleGrid": "简约网格",
+    "table": "表格"
+  },
+  "node": {
+    "online": "在线",
+    "offline": "离线",
+    "cpu": "CPU",
+    "memory": "内存",
+    "disk": "磁盘",
+    "network": "网络",
+    "uptime": "运行时间",
+    "upload": "上传",
+    "download": "下载",
+    "total": "总计",
+    "group": "分组",
+    "tag": "标签"
+  },
+  "filter": {
+    "currentFilter": "当前过滤:",
+    "group": "分组: {{group}}",
+    "tag": "标签: {{tag}}"
+  },
+  "message": {
+    "noNodes": "暂无节点数据",
+    "noMatchingNodes": "没有符合条件的节点",
+    "loading": "加载中..."
+  },
+  "footer": {
+    "poweredBy": "Powered by",
+    "theme": "Theme"
+  },
+  "dialog": {
+    "overview": "概览",
+    "history": "历史数据",
+    "systemInfo": "系统信息",
+    "currentStatus": "当前状态",
+    "cores": "核心数",
+    "gpu": "GPU",
+    "arch": "架构",
+    "virtualization": "虚拟化",
+    "kernelVersion": "内核版本",
+    "swap": "Swap",
+    "load": "负载",
+    "timeRange": "时间范围:",
+    "1h": "1小时",
+    "24h": "24小时",
+    "3d": "3天",
+    "cpuUsage": "CPU 使用率",
+    "memoryUsage": "内存使用率",
+    "diskUsage": "磁盘使用率",
+    "systemLoad": "系统负载",
+    "networkDownload": "网络下载速度",
+    "networkUpload": "网络上传速度",
+    "noHistoryData": "暂无历史数据",
+    "close": "关闭"
+  },
+  "time": {
+    "days": "{{count}}天",
+    "hours": "{{count}}小时",
+    "minutes": "{{count}}分钟"
+  }
+}
